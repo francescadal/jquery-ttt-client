@@ -13,22 +13,44 @@ var tttapi = {
 
   register: function register(credentials, callback) {
     this.ajax({
+      method: 'POST',
+      url: this.ttt +'/users',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(credentials),
+      dataType:'json',
     }, callback);
   },
 
   login: function login(credentials, callback) {
     this.ajax({
+      method: 'POST',
+      url: this.ttt +'/login',
+      contentType:'application/json; charset=utf-8',
+      data: JSON.stringify(credentials),
+      dataType:'json',
     }, callback);
   },
 
   //Authenticated api actions
   listGames: function (token, callback) {
     this.ajax({
+      method: 'GET',
+      url: this.ttt +'/games',
+      headers: {
+        Authorization:'Token token=' + token
+      },
+      dataType: 'json'
     }, callback);
   },
 
   createGame: function (token, callback) {
     this.ajax({
+      method:'POST',
+      url: this.ttt +'/games',
+      headers: {
+        Authorization:'Token token=' + token
+      },
+      dataType: 'json'
     }, callback);
   },
 
@@ -44,6 +66,14 @@ var tttapi = {
 
   markCell: function (id, data, token, callback) {
     this.ajax({
+      method:'PATCH',
+      url: this.ttt + '/games/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(credentials),
+      dataType: 'json'
     }, callback);
   },
 

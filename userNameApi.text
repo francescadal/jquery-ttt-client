@@ -1,0 +1,16 @@
+curl --include --request POST --header "Content-Type: application/json" -d '{
+  "credentials": {
+    "email": "fran@dale.com",
+    "password": "123password",
+    "password_confirmation": "123password"
+  }
+}' http://ttt.wdibos.com/users
+
+curl --request POST --header "Content-Type: application/json" -d '{
+  "credentials": {
+    "email": "fran@dale.com",
+    "password": "123password"
+  }
+}' http://ttt.wdibos.com/login
+
+curl --header "Authorization: Token token=6a351d0ed29d29e6e380b72d5469311a" http://ttt.wdibos.com/games
